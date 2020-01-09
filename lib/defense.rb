@@ -70,14 +70,17 @@ class Defense
         new_hash[losing_team_id] = IncrementalAverage.new(winning_team_goals)
       end
     end
+
     new_hash
   end
 
   def self.winning_team(game_id)
     win_hash = {}
+    
     win = GameTeam.all_game_teams.find do |game_team|
       game_team.game_id == game_id && (game_team.result == "WIN" || (game_team.result == "TIE" && game_team.hoa == "home"))
     end
+    
     win_hash[win.team_id] = win.goals
     win_hash
   end

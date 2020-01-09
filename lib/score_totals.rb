@@ -3,12 +3,12 @@ require 'csv'
 
 class ScoreTotals
 
-  def self.highest_score_total
+  def self.highest_total_score
     total_goals = Game.all_games.map {|game| game.away_goals + game.home_goals}
     total_goals.max
   end
 
-  def self.lowest_score_total
+  def self.lowest_total_score
     total_goals = Game.all_games.map {|game| game.away_goals + game.home_goals}
     total_goals.min
   end
@@ -19,5 +19,4 @@ class ScoreTotals
     end
     total_goals_diff.max
   end
-
 end

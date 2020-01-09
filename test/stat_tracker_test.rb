@@ -1,3 +1,4 @@
+require_relative 'test_helper'
 require 'minitest/autorun'
 require 'minitest/pride'
 require './lib/stat_tracker'
@@ -25,23 +26,5 @@ class StatTrackerTest < Minitest::Test
     assert_equal './test/dummy/games_trunc.csv', @stat_tracker.game_path
     assert_equal './test/dummy/teams_trunc.csv', @stat_tracker.team_path
     assert_equal './test/dummy/game_teams_trunc.csv', @stat_tracker.game_team_path
-  end
-
-  def test_it_can_create_a_game_collection
-    assert_instance_of Array, @stat_tracker.games
-    assert_equal 8, @stat_tracker.games.length
-    assert_instance_of Game, @stat_tracker.games.first
-  end
-
-  def test_it_can_create_a_team_collection
-    assert_instance_of Array, @stat_tracker.teams
-    assert_equal 6, @stat_tracker.teams.length
-    assert_instance_of Team, @stat_tracker.teams.first
-  end
-
-  def test_it_can_create_a_game_team_collection
-    assert_instance_of Array, @stat_tracker.game_teams
-    assert_equal 10, @stat_tracker.game_teams.length
-    assert_instance_of GameTeam, @stat_tracker.game_teams.first
   end
 end

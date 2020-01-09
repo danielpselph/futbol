@@ -5,10 +5,8 @@ require_relative 'game_team'
 class SeasonPerformance
 
   def self.best_season
-    #Season with the highest win percentage for a team.
-    #input team_id and receive season
     hash = {}
-  x =  GameTeam.all_game_teams.map do |game_team|
+    x =  GameTeam.all_game_teams.map do |game_team|
       hash[game_team.game_id] = game_team.team_id = wins
     end
   end
@@ -20,7 +18,6 @@ class SeasonPerformance
     else
       win_hash[x.team_id] = 1
     end
-    require "pry"; binding.pry
     win_hash
   end
 

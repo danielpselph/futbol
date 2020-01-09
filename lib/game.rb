@@ -10,11 +10,11 @@ class Game
   def self.from_csv(file_path)
     csv = CSV.read("#{file_path}", headers: true, header_converters: :symbol)
     @@all_games = csv.map do |row|
-                    Game.new(row)
-                  end
+      Game.new(row)
+    end
   end
 
-attr_reader :game_id, :season, :type, :date_time, :away_team_id, :home_team_id, :away_goals, :home_goals, :venue
+  attr_reader :game_id, :season, :type, :date_time, :away_team_id, :home_team_id, :away_goals, :home_goals, :venue
 
   def initialize(game_info)
     @game_id = game_info[:game_id]
@@ -29,10 +29,8 @@ attr_reader :game_id, :season, :type, :date_time, :away_team_id, :home_team_id, 
   end
 
   def self.count_of_games_by_season
-
     season_games = {}
     number_of_games = 0
-
     all_games_sorted = @@all_games.sort_by(&:season)
 
     all_games_sorted.each do |game|
@@ -50,7 +48,6 @@ attr_reader :game_id, :season, :type, :date_time, :away_team_id, :home_team_id, 
   def self.average_goals_by_season
     season_avg_goals = {}
     total_games_per_season = 0
-
     all_games_sorted = @@all_games.sort_by(&:season)
 
     all_games_sorted.each do |game|
@@ -59,14 +56,14 @@ attr_reader :game_id, :season, :type, :date_time, :away_team_id, :home_team_id, 
         season_avg_goals[game.season] = total_games_per_season = total_games_per_season + game.away_goals + game.home_goals
       else
         season_avg_goals[game.season] =
-          total_games_per_season = total_games_per_season + game.away_goals + game.home_goals
+        total_games_per_season = total_games_per_season + game.away_goals + game.home_goals
       end
     end
 
     counter = -1
 
     averages = season_avg_goals.values.map do |goals_total|
-      (goals_total / count_of_games_by_season.values[counter += 1].to_f).round(2)
+    (goals_total / count_of_games_by_season.values[counter += 1].to_f).round(2)
     end
 
     counter = -1
