@@ -4,6 +4,7 @@ require 'minitest/pride'
 require './lib/game_team'
 require './lib/team'
 require './lib/game'
+require_relative 'test_helper'
 
 class GameTeamTest < Minitest::Test
   def setup
@@ -55,5 +56,42 @@ class GameTeamTest < Minitest::Test
     assert_equal "3", @csv_game_team.goals
     assert_equal "12", @csv_game_team.shots
     assert_equal "51", @csv_game_team.tackles
+  end
+
+  def test_percentage_home_wins
+    assert_equal 0.50, GameTeam.percentage_home_wins
+  end
+
+  def test_percentage_visitor_wins
+    assert_equal 0.50, GameTeam.percentage_visitor_wins
+  end
+
+  def test_percentage_ties
+    assert_equal 0.20, GameTeam.percentage_ties
+  end
+
+  def test_highest_scoring_visitor
+    #assert_equal "26", GameTeam.highest_scoring_visitor
+    assert_equal "FC Cincinnati", GameTeam.highest_scoring_visitor
+  end
+
+  def test_lowest_scoring_visitor
+    assert_equal "Houston Dynamo", GameTeam.lowest_scoring_visitor
+  end
+
+  def test_lowest_scoring_home_team
+    assert_equal "Houston Dynamo", GameTeam.lowest_scoring_home_team
+  end
+
+  def test_highest_scoring_home_team
+    assert_equal "FC Dallas", GameTeam.highest_scoring_home_team
+  end
+
+  def test_best_fans
+    assert_equal "AAAAAA", GameTeam.best_fans
+  end
+
+  def test_worst_fans
+    assert_instance_of String, GameTeam.worst_fans
   end
 end

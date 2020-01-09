@@ -4,6 +4,8 @@ require_relative 'team'
 require_relative 'game_team'
 require_relative 'offense'
 require_relative 'defense'
+require_relative 'season_statistics'
+require_relative 'season_game'
 require_relative 'wins_and_ties'
 require_relative 'fans'
 require_relative 'tackle'
@@ -70,7 +72,23 @@ class StatTracker
     @lowest_total_score = ScoreTotals.lowest_total_score
     @biggest_blowout = ScoreTotals.biggest_blowout
   end
-  
+
+  def winningest_coach(season)
+    SeasonStatistics.winningest_coach(season)
+  end
+
+  def worst_coach(season)
+    SeasonStatistics.worst_coach(season)
+  end
+
+  def biggest_bust(season)
+    SeasonStatistics.biggest_bust(season)
+  end
+
+  def biggest_surprise(season)
+    SeasonStatistics.biggest_surprise(season)
+  end
+
   # def most_tackles(season)
   #   Tackle.most_tackles(season)
   # end
