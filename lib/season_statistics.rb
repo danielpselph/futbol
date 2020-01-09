@@ -3,36 +3,11 @@ require_relative 'team'
 require_relative 'season_game'
 
 class SeasonStatistics < SeasonGame
-
-  # def season_games
-  #   @all_season_games ||= self.new
-  # end
-
-  # def self.all_games_all_seasons
-  #   #return @@season_games if @season_games
-  #   #@season_games = {}
-  #   all_season_games.each do |game|
-  #     if season_games.keys.include?(game.season)
-  #       game_ids = season_games[game.season]
-  #       game_ids << game.game_id
-  #     else
-  #       season_games[game.season] = [game.game_id]
-  #     end
-  #   end
-  #   #@season_games
-  # end
-
   def self.games_per_season(season)
     all_season_games[season]
   end
 
   def self.game_teams_per_season(season)
-    # all_games = games_per_season(season).map do |games|
-    #   GameTeam.all_game_teams.find_all do |game_teams|
-    #     games == game_teams.game_id
-    #   end
-    # end
-    # all_games.flatten
     all_season_games[season].values.flatten
   end
 
@@ -60,67 +35,23 @@ class SeasonStatistics < SeasonGame
     end
 
     win_percent_by_coach
-    # require "pry"; binding.pry
   end
 
   def self.winningest_coach(season)
-    # win_percent
-    max_wins_coach = win_percent_by_coach(season).find_all do |coach|
+    win_percent_by_coach(season).find_all do |coach|
       coach[0] if coach[-1] == win_percent_by_coach(season).values.max
-    end
-
-    max_wins_coach.flatten.first
+    end.flatten.first
   end
-
-  # def self.coach_by_team_id(season)
-  #   team_coaches = {}
-  #   game_teams_per_season(season).each do |game_team|
-  #     team_coaches[game_team.team_id] = game_team.head_coach
-  #   end
-  #   team_coaches
-  # end
-
-  # def self.winningest_coach(season)
-  #   coach_by_team_id(season).find {|team| team[0] == winningest_coach_by_season(season)}.last
-  # end
 
   def self.worst_coach(season)
-    min_wins_coach = win_percent_by_coach(season).find_all do |coach|
+    win_percent_by_coach(season).find_all do |coach|
       coach[0] if coach[-1] == win_percent_by_coach(season).values.min
-    end
-    min_wins_coach.flatten.first
+    end.flatten.first
   end
 
-  # def self.worst_coach(season)
-  #   coach_by_team_id(season).find {|team| team[0] == worst_team_by_season(season)}.last
-  # end
-
-  # def self.post_season_games
-  #   post_season_games = {}
-  #   Game.all_games.each do |game|
-  #     if game.type == "Postseason" && post_season_games.keys.include?(game.season)
-  #       game_ids = post_season_games[game.season]
-  #       game_ids << game.game_id
-  #     elsif game.type == "Postseason" && post_season_games.keys.include?(game.season) == false
-  #       post_season_games[game.season] = [game.game_id]
-  #     end
-  #   end
-  #   post_season_games
-  # end
-
   def self.win_percent_post_season(season)
-    # post_season_games_per_season = post_season_games[season]
     all_post_games = all_post_season_games[season].values.flatten
-    # .find_all do |season_game|
-    #   post_season_games_per_season.include?(season_game.game_id)
-    #   #season_game.first exists in post_season_games_per_season
-    # end
 
-    # all_post_season_games = post_season_games[season].map do |games|
-    #   GameTeam.all_game_teams.find_all do |game_teams|
-    #     games == game_teams.game_id
-    #   end
-    # end.flatten
     total_team_wins = {}
     total_team_games = {}
     all_post_games.each do |game_team|
@@ -142,36 +73,11 @@ class SeasonStatistics < SeasonGame
       avg_wins = total_team_wins[key]/total_team_games[key].to_f
       win_percent_by_team[key] = avg_wins
     end
-
     win_percent_by_team
   end
 
-  # def self.regular_games
-  #   regular_games = {}
-  #   Game.all_games.each do |game|
-  #     if game.type == "Regular Season" && regular_games.keys.include?(game.season)
-  #       game_ids = regular_games[game.season] #
-  #       game_ids << game.game_id
-  #     elsif game.type == "Regular Season" && regular_games.keys.include?(game.season) == false
-  #       regular_games[game.season] = [game.game_id]
-  #     end
-  #   end
-  #   regular_games
-  # end
-
-  # def self.all_regular_games(season)
-  #
-  #     #season_game.first exists in post_season_games_per_season
-  #   end
-  # end
-
   def self.win_percent_regular(season)
     all_regular_games = all_regular_season_games[season].values.flatten
-    # all_regular_games = regular_games[season].map do |game_id|
-    #   GameTeam.all_game_teams.find_all do |game_team|
-    #     game_id == game_team.game_id
-    #   end
-    # end.flatten
 
     total_team_wins = {}
     total_team_games = {}
@@ -194,7 +100,6 @@ class SeasonStatistics < SeasonGame
       avg_wins = (total_team_wins[key]/total_team_games[key].to_f).round(5)
       win_percent_by_team[key] = avg_wins
     end
-
     win_percent_by_team
   end
 
