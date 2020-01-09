@@ -10,6 +10,7 @@ class SeasonGame
 
   def self.clear_all_season_games
     @@all_season_games = nil
+  end
     
   def self.all_post_season_games
     @@all_post_season_games ||= post_season_games

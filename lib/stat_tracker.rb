@@ -10,7 +10,6 @@ require_relative 'wins_and_ties'
 require_relative 'fans'
 require_relative 'tackle'
 require_relative 'score_totals'
-
 require_relative 'accurate'
 require_relative 'highest_scores'
 require_relative 'lowest_scores'

@@ -4,7 +4,6 @@ require 'minitest/pride'
 require './lib/team'
 require './lib/game_team'
 require './lib/season_statistics'
-require_relative 'test_helper'
 
 class SeasonStatisticsTest < Minitest::Test
   def setup
