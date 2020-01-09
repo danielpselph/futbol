@@ -1,3 +1,4 @@
+require_relative 'test_helper'
 require 'minitest/autorun'
 require 'minitest/pride'
 require './lib/season'
@@ -10,5 +11,5 @@ class SeasonTest < Minitest::Test
     season = Season.new
 
     assert_equal nil, season.season_games
-  end 
+  end
 end

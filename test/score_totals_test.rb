@@ -1,3 +1,4 @@
+require_relative 'test_helper'
 require 'minitest/autorun'
 require 'minitest/pride'
 require './lib/game'
@@ -53,11 +54,11 @@ class ScoreTotalsTest < Minitest::Test
   end
 
   def test_can_find_highest_score_total
-    assert_equal 7, ScoreTotals.highest_score_total
+    assert_equal 7, ScoreTotals.highest_total_score
   end
 
   def test_can_find_lowest_score_total
-    assert_equal 1, ScoreTotals.lowest_score_total
+    assert_equal 1, ScoreTotals.lowest_total_score
   end
 
   def test_can_find_biggest_blowout

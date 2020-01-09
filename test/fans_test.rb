@@ -1,3 +1,4 @@
+require_relative 'test_helper'
 require 'minitest/autorun'
 require 'minitest/pride'
 require './lib/fans'
@@ -11,7 +12,7 @@ class FansTest < Minitest::Test
   end
   
   def test_best_fans
-    assert_equal "Montreal Impace", Fans.best_fans
+    assert_equal "Montreal Impact", Fans.best_fans
   end
   
   def test_worst_fans
