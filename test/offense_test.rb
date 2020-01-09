@@ -1,6 +1,6 @@
+require_relative 'test_helper'
 require 'minitest/autorun'
 require 'minitest/pride'
-require_relative 'test_helper'
 require './lib/team'
 require './lib/game_team'
 require './lib/offense'
@@ -54,6 +54,6 @@ class OffenseTest < Minitest::Test
   end
 
   def test_it_can_return_worst_offense
-    assert_equal "Portland Timbers", Offense.worst_offense
+    assert_equal "Chicago Fire", Offense.worst_offense
   end
 end
