@@ -10,8 +10,11 @@ require_relative 'wins_and_ties'
 require_relative 'fans'
 require_relative 'tackle'
 require_relative 'score_totals'
+
+require_relative 'accurate'
 require_relative 'highest_scores'
 require_relative 'lowest_scores'
+
 
 class StatTracker
 
@@ -89,11 +92,21 @@ class StatTracker
     SeasonStatistics.biggest_surprise(season)
   end
 
-  # def most_tackles(season)
-  #   Tackle.most_tackles(season)
-  # end
 
-  # def fewest_tackles
-  #   Tackle.fewest_tackles
-  # end
+  def most_tackles(season)
+    Tackle.most_tackles(season)
+  end
+
+  def fewest_tackles(season)
+    Tackle.fewest_tackles(season)
+  end
+
+  def most_accurate_team(season)
+    Accurate.most_accurate_team(season)
+  end
+
+  def least_accurate_team(season)
+    Accurate.least_accurate_team(season)
+  end
+
 end

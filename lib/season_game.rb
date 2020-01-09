@@ -2,10 +2,15 @@ require_relative 'game_team'
 require_relative 'game'
 
 class SeasonGame
+
   def self.all_season_games
     @@all_season_games ||= season_games
   end
 
+
+  def self.clear_all_season_games
+    @@all_season_games = nil
+    
   def self.all_post_season_games
     @@all_post_season_games ||= post_season_games
   end
