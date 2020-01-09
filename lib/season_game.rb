@@ -1,5 +1,5 @@
-require './lib/game_team'
-require './lib/game'
+require_relative 'game_team'
+require_relative 'game'
 
 class SeasonGame
   def self.all_season_games

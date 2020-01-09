@@ -5,6 +5,7 @@ require_relative 'game_team'
 require_relative 'offense'
 require_relative 'defense'
 require_relative 'season_statistics'
+require_relative 'season_game'
 
 class StatTracker
 
@@ -62,11 +63,15 @@ class StatTracker
     SeasonStatistics.winningest_coach(season)
   end
 
-  # def biggest_bust(season)
-  #   SeasonStatistics.biggest_bust(season)
-  # end
-  #
-  # def biggest_surprise(season)
-  #   SeasonStatistics.biggest_surprise(season)
-  # end
+  def worst_coach(season)
+    SeasonStatistics.worst_coach(season)
+  end
+
+  def biggest_bust(season)
+    SeasonStatistics.biggest_bust(season)
+  end
+
+  def biggest_surprise(season)
+    SeasonStatistics.biggest_surprise(season)
+  end
 end
