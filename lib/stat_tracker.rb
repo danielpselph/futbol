@@ -4,6 +4,8 @@ require_relative 'team'
 require_relative 'game_team'
 require_relative 'offense'
 require_relative 'defense'
+require_relative 'season_statistics'
+require_relative 'season_game'
 require_relative 'wins_and_ties'
 require_relative 'fans'
 require_relative 'tackle'
@@ -74,11 +76,27 @@ class StatTracker
     @biggest_blowout = ScoreTotals.biggest_blowout
   end
 
-  # def most_tackles(season)
-  #   Tackle.most_tackles(season)
-  # end
+  def winningest_coach(season)
+    SeasonStatistics.winningest_coach(season)
+  end
 
-<<<<<<< HEAD
+  def worst_coach(season)
+    SeasonStatistics.worst_coach(season)
+  end
+
+  def biggest_bust(season)
+    SeasonStatistics.biggest_bust(season)
+  end
+
+  def biggest_surprise(season)
+    SeasonStatistics.biggest_surprise(season)
+  end
+
+
+  def most_tackles(season)
+    Tackle.most_tackles(season)
+  end
+
   def fewest_tackles(season)
     Tackle.fewest_tackles(season)
   end
@@ -91,19 +109,4 @@ class StatTracker
     Accurate.least_accurate_team(season)
   end
 
-  # def highest_score_total
-  #   ScoreTotals.highest_score_total
-  # end
-  #
-  # def lowest_score_total
-  #   ScoreTotals.lowest_score_total
-  # end
-  #
-  # def biggest_blowout
-  #   ScoreTotals.biggest_blowout
-=======
-  # def fewest_tackles
-  #   Tackle.fewest_tackles
->>>>>>> 297c8baeaee848cdf6334bf6427ea2c1c33e823d
-  # end
 end

@@ -2,6 +2,7 @@ require_relative 'test_helper'
 require 'minitest/autorun'
 require 'minitest/pride'
 require './lib/game'
+require_relative 'test_helper'
 
 class GameTest < Minitest::Test
   def setup
@@ -50,23 +51,24 @@ class GameTest < Minitest::Test
     assert_equal 3, @csv_game.home_goals
     assert_equal "Toyota Stadium", @csv_game.venue
   end
-  
+
   def test_it_gives_count_of_games_by_season
+    # expected = {"20122013"=>4, "20132014"=>1, "20152016"=>1, "20162017"=>2}
     expected = {"20122013"=>64, "20132014"=>12, "20142015"=>16, "20152016"=>16, "20162017"=>4}
-    
     assert_instance_of Hash, Game.count_of_games_by_season
     assert_equal 5, Game.count_of_games_by_season.length
     assert_equal expected, Game.count_of_games_by_season
   end
-  
+
   def test_it_can_return_average_goals_by_season
+    # expected = {"20122013"=>4.5, "20132014"=>4.0, "20152016"=>5.0, "20162017"=>5.0}
     expected = {"20122013"=>3.98, "20132014"=>4.17, "20142015"=>3.75, "20152016"=>3.88, "20162017"=>4.75}
     
     assert_instance_of Hash, Game.average_goals_by_season
     assert_equal 5, Game.average_goals_by_season.length
     assert_equal expected, Game.average_goals_by_season
   end
-  
+
   def test_it_can_return_average_goals_per_game
     assert_equal 3.98, Game.average_goals_per_game
   end
