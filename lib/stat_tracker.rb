@@ -6,6 +6,7 @@ require_relative 'offense'
 require_relative 'defense'
 require_relative 'tackle'
 require_relative 'score_totals'
+require_relative 'accurate'
 
 class StatTracker
 
@@ -63,19 +64,27 @@ class StatTracker
     Tackle.most_tackles(season)
   end
 
-  # def fewest_tackles
-  #   Tackle.fewest_tackles
+  def fewest_tackles(season)
+    Tackle.fewest_tackles(season)
+  end
+
+  def most_accurate_team(season)
+    Accurate.most_accurate_team(season)
+  end
+
+  def least_accurate_team(season)
+    Accurate.least_accurate_team(season)
+  end
+
+  # def highest_score_total
+  #   ScoreTotals.highest_score_total
   # end
-
-  def highest_score_total
-    ScoreTotals.highest_score_total
-  end
-
-  def lowest_score_total
-    ScoreTotals.lowest_score_total
-  end
-
-  def biggest_blowout
-    ScoreTotals.biggest_blowout
-  end
+  #
+  # def lowest_score_total
+  #   ScoreTotals.lowest_score_total
+  # end
+  #
+  # def biggest_blowout
+  #   ScoreTotals.biggest_blowout
+  # end
 end
