@@ -4,9 +4,10 @@ require_relative 'team'
 require_relative 'game_team'
 require_relative 'offense'
 require_relative 'defense'
+require_relative 'season_statistics'
 
 class StatTracker
-  
+
   def self.from_csv(file_path)
     game_path = file_path[:games]
     team_path = file_path[:teams]
@@ -37,7 +38,7 @@ class StatTracker
     Game.from_csv(game_path)
     Team.from_csv(team_path)
     GameTeam.from_csv(game_team_path)
-    
+
     @count_of_games_by_season = Game.count_of_games_by_season
     @average_goals_by_season = Game.average_goals_by_season
     @average_goals_per_game = Game.average_goals_per_game
@@ -56,4 +57,16 @@ class StatTracker
     @best_fans = GameTeam.best_fans
     @worst_fans = GameTeam.worst_fans
   end
+
+  def winningest_coach(season)
+    SeasonStatistics.winningest_coach(season)
+  end
+
+  # def biggest_bust(season)
+  #   SeasonStatistics.biggest_bust(season)
+  # end
+  #
+  # def biggest_surprise(season)
+  #   SeasonStatistics.biggest_surprise(season)
+  # end
 end
