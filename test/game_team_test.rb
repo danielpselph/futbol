@@ -4,7 +4,6 @@ require 'minitest/pride'
 require './lib/game_team'
 require './lib/team'
 require './lib/game'
-require_relative 'test_helper'
 
 class GameTeamTest < Minitest::Test
   def setup

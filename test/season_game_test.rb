@@ -1,3 +1,4 @@
+require_relative 'test_helper'
 require 'minitest/autorun'
 require 'minitest/pride'
 require './lib/team'
@@ -5,7 +6,6 @@ require './lib/game_team'
 require './lib/game'
 require './lib/season_statistics'
 require './lib/season_game'
-require_relative 'test_helper'
 require 'csv'
 
 class SeasonStatisticsTest < Minitest::Test

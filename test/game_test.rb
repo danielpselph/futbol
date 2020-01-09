@@ -2,7 +2,6 @@ require_relative 'test_helper'
 require 'minitest/autorun'
 require 'minitest/pride'
 require './lib/game'
-require_relative 'test_helper'
 
 class GameTest < Minitest::Test
   def setup
