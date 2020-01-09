@@ -12,8 +12,8 @@ class GameTeam
   def self.from_csv(file_path)
     csv = CSV.read("#{file_path}", headers: true, header_converters: :symbol)
     @@all_game_teams = csv.map do |row|
-                    GameTeam.new(row)
-                  end
+      GameTeam.new(row)
+    end
   end
 
   attr_reader :game_id, :team_id, :hoa, :result, :settled_in,

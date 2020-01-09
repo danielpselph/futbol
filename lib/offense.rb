@@ -52,7 +52,6 @@ class Offense
   end
 
   def self.worst_offense
-    # Utah Royals FC 7
     hash = get_team_goal_avg_hash()
 
     current_min_team_id = ""

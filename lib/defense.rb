@@ -2,11 +2,21 @@ require 'csv'
 require_relative 'team'
 require_relative 'game_team'
 require_relative 'data_objects/incremental_average'
+require_relative 'modules/team_name'
 
 class Defense
+  extend TeamName
+  @@goal_hash = nil
+
+  def self.get_goal_hash()
+    if(@@goal_hash == nil)
+      @@goal_hash = add_goals_to_opposing_team()
+    end
+    return @@goal_hash
+  end
 
   def self.best_defense
-    hash = add_goals_to_opposing_team()
+    hash = get_goal_hash()
 
     current_min_team_id = ""
     current_min_avg = nil
@@ -23,7 +33,7 @@ class Defense
   end
 
   def self.worst_defense
-    hash = add_goals_to_opposing_team()
+    hash = get_goal_hash()
 
     current_max_team_id = ""
     current_max_avg = -1
@@ -60,32 +70,27 @@ class Defense
         new_hash[losing_team_id] = IncrementalAverage.new(winning_team_goals)
       end
     end
+
     new_hash
   end
 
   def self.winning_team(game_id)
     win_hash = {}
-    y = GameTeam.all_game_teams.find do |game_team|
+    
+    win = GameTeam.all_game_teams.find do |game_team|
       game_team.game_id == game_id && (game_team.result == "WIN" || (game_team.result == "TIE" && game_team.hoa == "home"))
     end
-    win_hash[y.team_id] = y.goals
+    
+    win_hash[win.team_id] = win.goals
     win_hash
   end
 
   def self.losing_team(game_id)
     lose_hash = {}
-    x = GameTeam.all_game_teams.find do |game_team|
+    loss = GameTeam.all_game_teams.find do |game_team|
       game_team.game_id == game_id && (game_team.result == "LOSS" || (game_team.result == "TIE" && game_team.hoa == "away"))
     end
-    lose_hash[x.team_id] = x.goals
+    lose_hash[loss.team_id] = loss.goals
     lose_hash
-  end
-
-  def self.get_team_name_from_id(team_id)
-    Team.all_teams.map do |team|
-      if team_id == team.team_id
-        return team.team_name
-      end
-    end
   end
 end
