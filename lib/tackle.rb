@@ -11,6 +11,7 @@ class Tackle < SeasonGame
 
   def self.most_tackles(season)
     hash = get_most_tackles_hash(season)
+    # require "pry"; binding.pry
     max = hash.max_by {|key, value| value}
     get_team_name_from_id(max[0])
   end
@@ -23,10 +24,11 @@ class Tackle < SeasonGame
 
   def self.get_most_tackles_hash(season)
     new_hash = {}
-
+# require "pry"; binding.pry
     tackle_hash = all_season_games[season]
 
     GameTeam.all_game_teams.map do |game_team|
+      # require "pry"; binding.pry
       if tackle_hash.keys.include?(game_team.game_id)
         if new_hash.key?(game_team.team_id)
           new_hash[game_team.team_id] = new_hash[game_team.team_id] + game_team.tackles.to_i

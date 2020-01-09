@@ -22,6 +22,10 @@ class TackleTest < Minitest::Test
     @games = Game.from_csv(@game_path)
   end
 
+  def teardown
+    Tackle.clear_all_season_games()
+  end
+
   def test_most_tackles
     game_team_tackles = GameTeam.new({
       :game_id => "201203022015",
@@ -35,18 +39,28 @@ class TackleTest < Minitest::Test
       :tackles => "7"
       })
       team_tackles = Team.new({
+        :team_id => "3",
+        :franchiseid => "33",
         :teamname => "Houston Dynamo",
-        :team_id => "3"
+        :abbreviation => "HOU",
+        :stadium => "BBVA Stadium"
         })
       game_tackles = Game.new({
-        :season => "20122013",
-        :game_id => "201203022015"
+        :game_id => "201203022015",
+        :season => "20132014",
+        :type => "Preseason",
+        :date_time => "12/16/19",
+        :away_team_id => "3",
+        :home_team_id => "10",
+        :away_goals => 4,
+        :home_goals => 1,
+        :venue => "Mercedes Benz Superdome"
         })
 
     GameTeam.stub(:all_game_teams, [game_team_tackles]) do
       Team.stub(:all_teams, [team_tackles]) do
         Game.stub(:all_games, [game_tackles]) do
-          assert_equal "Houston Dynamo", Tackle.most_tackles("20122013")
+          assert_equal "Houston Dynamo", Tackle.most_tackles("20132014")
         end
       end
     end

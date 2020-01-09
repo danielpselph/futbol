@@ -13,5 +13,5 @@ module TeamName
   #     @@all_teams = generate()
   #   end
   #   return @@all_teams
-  # end 
+  # end
 end
